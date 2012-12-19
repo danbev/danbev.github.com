@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>daniel.bevenius</title>
+    <title>danbev.github.com by danbev</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -15,15 +15,17 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>daniel.bevenius</h1>
+        <h1>danbev.github.com</h1>
+        <p>Blog</p>
 
-        <p class="view"><a href="https://github.com/danbev">GitHub Profile</a></p>
+
+        <p class="view"><a href="https://github.com/danbev">View My GitHub Profile</a></p>
 
       </header>
       <section>
         <h1>What's new in AeroGear Controller</h1>
 
-<p>New features in the M7</p>
+<p>With the 1.0.0.M1 release of AeroGear-Controller we have added the following features:</p>
 
 <ul>
 <li>Error Routes</li>
@@ -96,14 +98,17 @@ With version M7 there is partial support for RESTful endpoints.  </p>
 
 <div class="highlight"><pre><span class="n">route</span><span class="o">()</span>
        <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"/cars"</span><span class="o">)</span>
+       <span class="o">.</span><span class="na">roles</span><span class="o">(</span><span class="s">"admin"</span><span class="o">)</span>
        <span class="o">.</span><span class="na">on</span><span class="o">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
        <span class="o">.</span><span class="na">produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">JSON</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">HTML</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span>
        <span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="n">Home</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">save</span><span class="o">(</span><span class="n">param</span><span class="o">(</span><span class="n">Car</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
 </pre></div>
 
-<p>In the above example, a POST to this route can respond with either JSON or HTML (forwarding to a view) depending on the HTTP Accept Header.  </p>
+<p>In the above example, a POST to this route can respond with either JSON or HTML (forwarding to a view) depending on the HTTP Accept Header. Also, this route will only be accessible to a user belonging to the <em>admin</em> group.</p>
 
 <p>As mentioned RESTful support is only partially implemented as we still need to be able to consume other formats, like JSON for example. This will be added with CR1 and full support will exist in 1.0.0. </p>
+
+<p>We would be more than happy to answer any questions you might have, and encourage you to try the <a href="https://controller-aerogear.rhcloud.com/aerogear-controller-demo/">demo on OpenShift</a>. Links to source, mailing list, issue tracker etc, can be found in the <em>Resources</em> section below.</p>
 
 <h2>What's next?</h2>
 
@@ -111,6 +116,14 @@ With version M7 there is partial support for RESTful endpoints.  </p>
 <li>Support for consuming media types enabling routes to consume and produce JSON or any other type.</li>
 <li>Support for more parameter type like header, cookie parameters.</li>
 <li>Paging</li>
+</ul><h2>Resources</h2>
+
+<ul>
+<li><a href="https://github.com/danbev/aerogear-controller">aerogear-controller</a></li>
+<li><a href="https://github.com/danbev/aerogear-controller-demo">aerogear-controller-demo</a></li>
+<li><a href="http://aerogear.org">aerogear.org</a></li>
+<li><a href="https://issues.jboss.org/browse/AEROGEAR">Issue Tracker</a></li>
+<li><a href="http://aerogear.org/community/">Mailing List</a></li>
 </ul>
       </section>
       <footer>
