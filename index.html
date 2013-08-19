@@ -23,7 +23,49 @@
 
       </header>
       <section>
-        <h2>AeroGear Controller 1.0.0</h2>
+        <h2>
+<a name="aerogear-simplepush-server-080" class="anchor" href="#aerogear-simplepush-server-080"><span class="octicon octicon-link"></span></a>AeroGear SimplePush Server 0.8.0</h2>
+
+<p>This is the first community release of AeroGear's <a href="https://github.com/aerogear/aerogear-simplepush-server">SimplePush Server</a>.  </p>
+
+<h3>
+<a name="so-what-is-a-simplepush-server" class="anchor" href="#so-what-is-a-simplepush-server"><span class="octicon octicon-link"></span></a>So what is a SimplePush Server?</h3>
+
+<p>It's a server side implementation of the <a href="https://wiki.mozilla.org/WebAPI/SimplePush/Protocol">SimplePush Protocol</a> specification from Mozilla. The SimplePush protocol describes a JavaScript client API and a protocol which allows backend applications to send notification messages to their web applications. </p>
+
+<p>Firefox OS v1.1 uses SimplePush as its Push Notification technology. Firefox OS Push Notifications are designed for one 
+thing – waking up apps. They do not deal with data, desktop notifications or anything else, since there are other 
+Web APIs that provide them. From the very beginning SimplePush was designed to explicitly not carry any payload. 
+Instead a version number is sent to the client. Based on that version number the client can perfom an action, e.g. refresh a view of data.</p>
+
+<h3>
+<a name="aerogear-simplepush-server" class="anchor" href="#aerogear-simplepush-server"><span class="octicon octicon-link"></span></a>AeroGear SimplePush Server</h3>
+
+<p>Mozilla provides a <a href="https://github.com/jrconlin/pushgo">server implementation</a> based on the Go programming language and <a href="https://github.com/aerogear/aerogear-js#simplepushclient">AeroGear's JavaScript client</a> will work against that implementation with out any problems. We wanted to provide another server option both for security (some companies would like more control over the push environment) and as a way to set up completely internal push networks. For example, a company with an internal app with a need for push notifications could deploy a SimplePush server on their internal network/VPN and have push messaging capability to their web apps without having to contact an outside server.</p>
+
+<p>AeroGear SimplePush is a Java implementation of the server side part of the specification and two version are provided, one based on <a href="http://netty.io/">Netty</a>, and one based on <a href="http://vertx.io/">Vert.x</a>.  </p>
+
+<p>The SimplePush specification states that secure WebSockets should be used as the transport protocol but for web applications this is  not always possible. Older browsers versions may lack WebSocket support, or issues with restrictive proxies in combination with WebSockets can lead to situations where the communication will simply not work. To counter this AeroGear's SimplePush server uses <a href="https://github.com/sockjs/sockjs-client/wiki/%5BArticle%5D-SockJS:-WebSocket-emulation-done-right">SockJS</a> to provide a fallback strategy. SockJS provides a client side and server side protocol and provides fallback handling in situations where a WebSocket connection cannot be made. AeroGear uses <a href="https://github.com/netty/netty/pull/1615">Netty's upcoming SockJS support</a> which takes care of the SockJS handling. </p>
+
+<p>If you feel like trying things out we will shortly be providing an <a href="https://github.com/aerogear/openshift-origin-cartridge-aerogear-push">OpenShift cartridge</a> which will enable you to create a new application on OpenShift that contains both AeroGear SimplePush Server and <a href="https://github.com/aerogear/aerogear-unifiedpush-server">AeroGear UnifiedPush server</a>.<br>
+You can also try out AeroGear SimplePush Server by building yourself. The deployment options are to run standalone or embedded in AS7/WildFly for the <a href="https://github.com/aerogear/aerogear-simplepush-server/tree/master/server-netty">Netty based version</a> and standalone for the <a href="https://github.com/aerogear/aerogear-simplepush-server/tree/master/server-vertx">Vert.x version</a>. Details of getting this up and running can be found in the modules.</p>
+
+<p>For more information about the SimplePush protocol and how it works please refer to <a href="https://wiki.mozilla.org/WebAPI/SimplePush/Protocol">Mozilla's specification</a> and <a href="https://github.com/aerogear/aerogear-simplepush-server/tree/master/server-core">AeroGear SimplePush protocol documentation</a>. </p>
+
+<p>If you have any questions, problems, or comments the please post to our <a href="http://aerogear.org/community/">mailing list</a>.</p>
+
+<p>References</p>
+
+<ul>
+<li><a href="https://github.com/aerogear/aerogear-simplepush-server">AeroGear SimplePush Server</a></li>
+<li><a href="https://github.com/aerogear/aerogear-simplepush-quickstart">AeroGear SimplePush Quickstart</a></li>
+<li><a href="https://github.com/aerogear/aerogear-js#simplepushclient">AeroGear JavaScript SimplePushClient</a></li>
+<li><a href="https://github.com/aerogear/aerogear-unifiedpush-server">AeroGear UnifiedPush Server</a></li>
+<li><a href="https://github.com/jrconlin/pushgo">Mozilla's SimplePush Server (Go Server)</a></li>
+</ul><h1></h1>
+
+<h2>
+<a name="aerogear-controller-100" class="anchor" href="#aerogear-controller-100"><span class="octicon octicon-link"></span></a>AeroGear Controller 1.0.0</h2>
 
 <p>We are pleased to announce the availablity of AeroGear Controller 1.0.0 which is a very lean model view controller written in Java. It focuses on the routing of HTTP requests to plain Java Object endpoints, and the handling of the results of these invocations. The results can either be forwarded to a view, or returned in the format requested by the caller.</p>
 
@@ -37,7 +79,8 @@
 <li>CORS support</li>
 </ul><p>What follows is a description of the pagination feature.Details about all the features can be found in the <a href="http://aerogear.org/docs/guides/aerogear-controller/">user guide</a>. </p>
 
-<h3>Pagination in AeroGear Controller</h3>
+<h3>
+<a name="pagination-in-aerogear-controller" class="anchor" href="#pagination-in-aerogear-controller"><span class="octicon octicon-link"></span></a>Pagination in AeroGear Controller</h3>
 
 <p>Pagination is the ability to return a limited number of elements in response to a call. The number of elements returned is referred to as a page. In AeroGear controller the strategy used for implementing pagination is using a offset/limit:</p>
 
@@ -97,7 +140,8 @@ Content-Length: 200
 
 <p>We would be more than happy to answer any questions you might have, and encourage you to try the demo on <a href="https://corscontroller-aerogear.rhcloud.com/aerogear-controller-demo/">OpenShift</a>. Links to source, mailing list, issue tracker etc, can be found in the Resources section below.</p>
 
-<h2>Resources</h2>
+<h2>
+<a name="resources" class="anchor" href="#resources"><span class="octicon octicon-link"></span></a>Resources</h2>
 
 <ul>
 <li><a href="https://github.com/aerogear/aerogear-controller">AeroGear Controller</a></li>
@@ -107,14 +151,16 @@ Content-Length: 200
 <li><a href="https://issues.jboss.org/browse/AEROGEAR">Issue Tracker</a></li>
 <li><a href="http://aerogear.org/community">Mailing List</a></li>
 <li><a href="http://aerogear.org">aerogear.org</a></li>
-</ul><hr><h2>What's new in AeroGear Controller 1.0.0.M8</h2>
+</ul><hr><h2>
+<a name="whats-new-in-aerogear-controller-100m8" class="anchor" href="#whats-new-in-aerogear-controller-100m8"><span class="octicon octicon-link"></span></a>What's new in AeroGear Controller 1.0.0.M8</h2>
 
 <p>With the 1.0.0.M8 release of AeroGear-Controller we have added the following features:</p>
 
 <ul>
 <li>Pagination support</li>
 <li>Consuming/Producing custom media types</li>
-</ul><h3>Pagination in AeroGear Controller</h3>
+</ul><h3>
+<a name="pagination-in-aerogear-controller-1" class="anchor" href="#pagination-in-aerogear-controller-1"><span class="octicon octicon-link"></span></a>Pagination in AeroGear Controller</h3>
 
 <p>Pagination is the ability to return a limited number of elements in response to a call. The number of elements returned is referred to as a page. In AeroGear controller the strategy used for implementing pagination is using an offset/limit:</p>
 
@@ -173,7 +219,8 @@ Content-Length: 200
 
 <p>Web Linking can be disabled in favor of the perhaps simpler option of custom headers as mentioned above using the <a href="https://github.com/aerogear/aerogear-controller/blob/master/src/main/java/org/jboss/aerogear/controller/router/rest/pagination/Paginated.java">@Paginated</a> annotation.</p>
 
-<h3>Consuming/Producing custom media types</h3>
+<h3>
+<a name="consumingproducing-custom-media-types" class="anchor" href="#consumingproducing-custom-media-types"><span class="octicon octicon-link"></span></a>Consuming/Producing custom media types</h3>
 
 <p>This support enables specifying that a route can consume a custom media type, or produce a custom media type, or both.<br>
 For example:</p>
@@ -188,11 +235,13 @@ For example:</p>
 
 <p>The above example declares that this route will be able to consume and produce a custom media type. You can specify multiple media types for both the <code>consumes</code> and the <code>produces</code> method. The client uses the HTTP <code>Accept</code> header to specify what type it wants the server to respond with. </p>
 
-<h4>Adding a Custom consumer</h4>
+<h4>
+<a name="adding-a-custom-consumer" class="anchor" href="#adding-a-custom-consumer"><span class="octicon octicon-link"></span></a>Adding a Custom consumer</h4>
 
 <p>A consumer is added to the system by adding a class that implements the <a href="https://github.com/aerogear/aerogear-controller/blob/master/src/main/java/org/jboss/aerogear/controller/router/Consumer.java">Consumer</a> interface. This will be picked up by the CDI container and registered for that specific content type. </p>
 
-<h4>Adding a Custom Producer/Responder</h4>
+<h4>
+<a name="adding-a-custom-producerresponder" class="anchor" href="#adding-a-custom-producerresponder"><span class="octicon octicon-link"></span></a>Adding a Custom Producer/Responder</h4>
 
 <p>Adding a producer/responder currently differs from adding a consumer. The reason for this is that we discovered the need to be able to respond to the same media type in different ways.<br>
 For example, a client may request that it <code>Accept: text/html</code>. But the route could choose to respond with either a dynamically generated JSP, or a static HTML page.  </p>
@@ -220,7 +269,8 @@ For example, a client may request that it <code>Accept: text/html</code>. But th
 
 <p>We would be more than happy to answer any questions you might have, and encourage you to try the demo on <a href="https://corscontroller-aerogear.rhcloud.com/aerogear-controller-demo/">OpenShift</a>. Links to source, mailing list, issue tracker etc, can be found in the Resources section below.</p>
 
-<h2>Resources</h2>
+<h2>
+<a name="resources-1" class="anchor" href="#resources-1"><span class="octicon octicon-link"></span></a>Resources</h2>
 
 <ul>
 <li><a href="https://github.com/aerogear/aerogear-controller">aerogear-controller</a></li>
@@ -228,7 +278,8 @@ For example, a client may request that it <code>Accept: text/html</code>. But th
 <li><a href="http://aerogear.org">aerogear.org</a></li>
 <li><a href="https://issues.jboss.org/browse/AEROGEAR">Issue Tracker</a></li>
 <li><a href="http://aerogear.org/community">Mailing List</a></li>
-</ul><hr><h2>What's new in AeroGear Controller 1.0.0.M1</h2>
+</ul><hr><h2>
+<a name="whats-new-in-aerogear-controller-100m1" class="anchor" href="#whats-new-in-aerogear-controller-100m1"><span class="octicon octicon-link"></span></a>What's new in AeroGear Controller 1.0.0.M1</h2>
 
 <p>With the 1.0.0.M1 release of AeroGear-Controller we have added the following features:</p>
 
@@ -236,7 +287,8 @@ For example, a client may request that it <code>Accept: text/html</code>. But th
 <li>Error Routes</li>
 <li>CORS support</li>
 <li>RESTful endpoint (partially supported)</li>
-</ul><h3>Error Routes</h3>
+</ul><h3>
+<a name="error-routes" class="anchor" href="#error-routes"><span class="octicon octicon-link"></span></a>Error Routes</h3>
 
 <p>You can now configure a route as an error handler for a type of exception:</p>
 
@@ -270,7 +322,8 @@ take a parameter:</p>
 <pre><code>${requestScope['org.jboss.aerogear.controller.exception']}
 </code></pre>
 
-<h3>Cross Origin Resource Sharing  (CORS) Support</h3>
+<h3>
+<a name="cross-origin-resource-sharing--cors-support" class="anchor" href="#cross-origin-resource-sharing--cors-support"><span class="octicon octicon-link"></span></a>Cross Origin Resource Sharing  (CORS) Support</h3>
 
 <p>CORS is supported by default but can be disabled or configured differently by implementing a CDI Producer:</p>
 
@@ -294,7 +347,8 @@ take a parameter:</p>
 <span class="o">}</span>
 </pre></div>
 
-<h3>RESTful endpoints</h3>
+<h3>
+<a name="restful-endpoints" class="anchor" href="#restful-endpoints"><span class="octicon octicon-link"></span></a>RESTful endpoints</h3>
 
 <p>In previous versions of AeroGear-Controller there was only support for forwarding requests to views, in a model-view-controller style. 
 With version M7 there is partial support for RESTful endpoints.  </p>
@@ -315,13 +369,15 @@ With version M7 there is partial support for RESTful endpoints.  </p>
 
 <p>We would be more than happy to answer any questions you might have, and encourage you to try the <a href="https://controller-aerogear.rhcloud.com/aerogear-controller-demo/">demo on OpenShift</a>. Links to source, mailing list, issue tracker etc, can be found in the <em>Resources</em> section below.</p>
 
-<h2>What's next?</h2>
+<h2>
+<a name="whats-next" class="anchor" href="#whats-next"><span class="octicon octicon-link"></span></a>What's next?</h2>
 
 <ul>
 <li>Support for consuming media types enabling routes to consume and produce JSON or any other type.</li>
 <li>Support for more parameter type like header, cookie parameters.</li>
 <li>Paging</li>
-</ul><h2>Resources</h2>
+</ul><h2>
+<a name="resources-2" class="anchor" href="#resources-2"><span class="octicon octicon-link"></span></a>Resources</h2>
 
 <ul>
 <li><a href="https://github.com/danbev/aerogear-controller">aerogear-controller</a></li>
